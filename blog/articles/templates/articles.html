@@ -21,7 +21,7 @@
 <div class="container mt-4">
     {% for article in article_list %}
        <span class="badge rounded-pill bg-success">Автор: {{article.author}}</span>
-        <h1><a class="link-style" href="">{{article.title}}</a></h1>
+        <h1><a class="link-style" href="{% url 'article_details' article.slug %}">{{article.title}}</a></h1>
     <br>
     {% endfor %}
 

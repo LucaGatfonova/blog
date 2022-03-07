@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Детали статьи {% endblock %}
+
+
+{% block style %}
+
+
+{% endblock %}
+
+
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>{{article.title}}</h1>
+        <h6>Опубликовано {{article.published}} <i>{{article.author}}</i></h6>
+        <br>
+        <p>{{article.description}}</p>
+    </div>
+
+
+{% endblock %}
