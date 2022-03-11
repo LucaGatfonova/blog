@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %}Авторизация{% endblock %}
+
+
+
+
+{% block body %}
+  <div class="container">
+    <h1>Login User</h1>
+    <p>Use the following form for the login</p>
+    <form action="" method="post" novalidate>
+
+      {{form.as_p}}
+      {% csrf_token %}
+
+      <input type="submit" value="Login" class="btn btn-success">
+
+
+    </form>
+  </div>
+
+
+{% endblock %}

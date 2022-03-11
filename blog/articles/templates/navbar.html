@@ -10,27 +10,35 @@
         {% if request.user.is_authenticated %}
 
          <li class="nav-item mx-5">
-          <a class="nav-link disabled">Welcome, {{request.user.username}}</a>
+          <a class="nav-link disabled">Привет, {{request.user.username}}</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'article_list' %}">Home</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'article_list' %}">Главная</a>
         </li>
-
-
-
-
+        <li class="nav-item">
+          <a class="nav-link" href="{}">Добавить статью</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Профиль
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="{% url 'password-change' %}">Смена пароля</a></li>
           </ul>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+        </li>
         </li>
 
         {% else %}
 
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'login' %}">Login</a>
+          <a class="nav-link" href="{% url 'login' %}">Авторизация</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'register' %}">Register</a>
+          <a class="nav-link" href="{% url 'register' %}">Регистрация</a>
         </li>
 
         {% endif %}
