@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 from .models import Article
-from .forms import LoginForm, UserRegistration, ArticleRegistrationForm
+from .forms import LoginForm, UserRegistration, ArticleRegistrationForm, ArticleUpdateForm
 from django.contrib.auth import authenticate, login
 
 
@@ -67,3 +67,21 @@ def article_form(request):
         article_form = ArticleRegistrationForm()
 
     return render(request, 'account/add_article.html', {'article_form': article_form})
+
+
+def update_article(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+
+    form = ArticleUpdateForm(request.POST or None, instance=article)
+
+    if form.is_valid():
+        form.save()
+        return redirect('article_list')
+
+    return render(request, 'account/update.html', {'form': form})
+
+
+def delete_article(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+    article.delete()
+    return redirect('article_list')
