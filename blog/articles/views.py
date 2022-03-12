@@ -3,12 +3,13 @@ from .models import Article
 from .forms import LoginForm, UserRegistration, ArticleRegistrationForm, ArticleUpdateForm
 from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
 
 
 def article_list(request):
     article_list = Article.objects.all().order_by('-published')
 
-    paginator = Paginator(article_list, 3)
+    paginator = Paginator(article_list, 4)
     page = request.GET.get('page')
 
     try:
@@ -66,6 +67,7 @@ def register(request):
     return render(request, 'account/register.html', {'user_form': user_form})
 
 
+@login_required
 def article_form(request):
     if request.method == "POST":
         article_form = ArticleRegistrationForm(request.POST)
